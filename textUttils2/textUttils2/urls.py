@@ -20,8 +20,10 @@ from . import views
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index,name='index'), #"" indicate the home page like '/' in php,    (views.index) it call index method inside the views file,  name paramiter indicate the name of the path
-    path('about',views.about,name='about'),
-    path('removepunc',views.removepunch,name='rempun'),
+    path('analyze',views.analyze,name='analyze'),
+
+
+
     # path('capitalizefirst',views.capfirst,name='capfirst'),
     # path('newlineremove',views.newlineremove,name='newlineremove'),
     # path('spaceremove',views.spaceremove,name='spaceremove'),

@@ -8,16 +8,28 @@ from django.shortcuts import render
 
 def index(request):
     # return HttpResponse("Home")
-    
     return render(request,'index.html')
 
 def about(request):
     return HttpResponse("Welcome to about Page")
 
-def removepunch(request):
+def analyze(request):
+
     print(request.GET.get('text','This is Default Value')) # it help to get data from formTag get request
     djText=request.GET.get('text','This is Default Value')
-    return HttpResponse("removepunc")
+    removepunc=request.GET.get('removepunc','off')
+    if removepunc =='on':
+
+        analyzed=''
+        punctuations='''!(){}[]-;:'"\,<>./?@#$%^&*_~'''
+        for char in djText:
+            if char not in punctuations:
+                analyzed=analyzed+char
+        params={'purpose':'Remove Punctuation','analyzed_text':analyzed}
+        return render(request,'analyze.html',params)  #here send analyze.html template as a responce
+    else:
+        return HttpResponse("Error")
+
 
 # def capfirst(request):
 #     return HttpResponse("Capitalized")
