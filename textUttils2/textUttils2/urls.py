@@ -21,6 +21,10 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('',views.index,name='index'), #"" indicate the home page like '/' in php,    (views.index) it call index method inside the views file,  name paramiter indicate the name of the path
     path('analyze',views.analyze,name='analyze'),
+   
+   
+   
+    path('navbar',views.navbar,name='navbar')
 
 
 

@@ -30,7 +30,11 @@ def analyze(request):
     else:
         return HttpResponse("Error")
 
-
+def navbar(request):   #This create for practice purpose not for Textutils
+    return HttpResponse('''
+       <a href='https://www.youtube.com'>Youtube</a> <a href='https://www.google.com'>Google</a>
+        
+    ''')
 # def capfirst(request):
 #     return HttpResponse("Capitalized")
 
