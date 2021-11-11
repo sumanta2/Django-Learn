@@ -8,4 +8,4 @@ for run django project type in cmd ::::  'python manage.py runserver' (mainly ru
 
 Following Video series ::   'https://youtube.com/playlist?list=PLu0W_9lII9ah7DDtYtflgwMwpT3xmjXY9'
 
- complete: 7 vdo10
+ complete: 9 vdo12

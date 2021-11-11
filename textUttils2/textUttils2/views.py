@@ -18,15 +18,38 @@ def analyze(request):
     print(request.GET.get('text','This is Default Value')) # it help to get data from formTag get request
     djText=request.GET.get('text','This is Default Value')
     removepunc=request.GET.get('removepunc','off')
+    fullCaps=request.GET.get('fullCaps','off')
+    newLineRemover=request.GET.get('newLineRemover','off')
+    spaceRemover=request.GET.get('spaceRemover','off')
+    
+
+    analyzed=''
     if removepunc =='on':
 
-        analyzed=''
+        
         punctuations='''!(){}[]-;:'"\,<>./?@#$%^&*_~'''
         for char in djText:
             if char not in punctuations:
                 analyzed=analyzed+char
         params={'purpose':'Remove Punctuation','analyzed_text':analyzed}
         return render(request,'analyze.html',params)  #here send analyze.html template as a responce
+    elif fullCaps=='on':
+        analyzed=djText.upper()
+        params={'purpose':'Full Capitalize','analyzed_text':analyzed}
+        return render(request,'analyze.html',params)  #here send analyze.html template as a responce
+    elif newLineRemover=='on':
+        for char in djText:
+            if char not in '/n':
+                analyzed=analyzed+char
+        params={'purpose':'Remove New Lines','analyzed_text':analyzed}
+        return render(request,'analyze.html',params)  #here send analyze.html template as a responce
+    elif spaceRemover=='on':
+        for index,char in enumerate(djText):   #enumerate() method return index value as well as string
+            if not(djText[index]  in ' ' and djText[index+1]  in ' '):
+                analyzed=analyzed+char
+        params={'purpose':'Remove New Lines','analyzed_text':analyzed}
+        return render(request,'analyze.html',params)  #here send analyze.html template as a responce
+
     else:
         return HttpResponse("Error")
 
