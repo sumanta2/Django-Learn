@@ -21,6 +21,7 @@ def analyze(request):
     fullCaps=request.GET.get('fullCaps','off')
     newLineRemover=request.GET.get('newLineRemover','off')
     spaceRemover=request.GET.get('spaceRemover','off')
+    CharCount=request.GET.get('CharCount','off')
     
 
     analyzed=''
@@ -48,6 +49,11 @@ def analyze(request):
             if not(djText[index]  in ' ' and djText[index+1]  in ' '):
                 analyzed=analyzed+char
         params={'purpose':'Remove New Lines','analyzed_text':analyzed}
+        return render(request,'analyze.html',params)  #here send analyze.html template as a responce
+    elif CharCount=='on':
+        length=len(djText)
+        length="Your input String's Length is:{}".format(length)
+        params={'purpose':'Remove New Line', 'analyzed_text':length}
         return render(request,'analyze.html',params)  #here send analyze.html template as a responce
 
     else:
