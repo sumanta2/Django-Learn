@@ -13,6 +13,9 @@ def index(request):
 def about(request):
     return HttpResponse("Welcome to about Page")
 
+def contact(request):
+    return HttpResponse("Welcome to Contact Page")
+
 def analyze(request):
 
     print(request.GET.get('text','This is Default Value')) # it help to get data from formTag get request
