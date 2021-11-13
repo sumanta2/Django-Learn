@@ -13,7 +13,10 @@
     <title>Hello, world!</title>
 </head>
 
+
+
 <body>
+
     <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
         <div class="container-fluid">
             <a class="navbar-brand" href="/">TextUtils.com</a>
@@ -35,47 +38,61 @@
                 </ul>
             </div>
         </div>
+
         <form class="d-flex">
             <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
             <button class="btn btn-outline-success" type="submit">Search</button>
         </form>
     </nav>
+
+
     <div class="alert alert-success alert-dismissible fade show" role="alert">
         <strong>Welcome To TextUtils</strong> You Perform some text operation here
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
+
+
     <div class="container">
-         <form action='/analyze' method='post'>{% csrf_token %} <!-- {% csrf_token %} string must be used if we uses post request in form -->
+        <form action='/analyze' method='post'>{% csrf_token %}
+            <!-- {% csrf_token %} string must be used if we uses post request in form -->
+
             <div class="mb-3">
                 <label for="exampleFormControlTextarea1" class="form-label">Enter Your Text Here</label>
-                <textarea class="form-control"name='text' id="exampleFormControlTextarea1" rows="7"></textarea>
+                <textarea class="form-control" name='text' id="exampleFormControlTextarea1" rows="7"></textarea>
             </div>
+
             <div class="form-check form-switch">
                 <input class="form-check-input" name='removepunc' type="checkbox" role="switch"
                     id="flexSwitchCheckDefault">
                 <label class="form-check-label" for="flexSwitchCheckDefault">RemovePunctuation</label>
             </div>
+
             <div class="form-check form-switch">
                 <input class="form-check-input" name='fullCaps' type="checkbox" role="switch"
                     id="flexSwitchCheckDefault1">
                 <label class="form-check-label" for="flexSwitchCheckDefault1">UpperCase</label>
             </div>
+
             <div class="form-check form-switch">
                 <input class="form-check-input" name='newLineRemover' type="checkbox" role="switch"
                     id="flexSwitchCheckDefault2">
                 <label class="form-check-label" for="flexSwitchCheckDefault2">New Line Remover</label>
             </div>
+
             <div class="form-check form-switch">
                 <input class="form-check-input" name='spaceRemover' type="checkbox" role="switch"
                     id="flexSwitchCheckDefault3">
                 <label class="form-check-label" for="flexSwitchCheckDefault3">Extra Space Remover</label>
             </div>
+
             <div class="form-check form-switch">
                 <input class="form-check-input" name='CharCount' type="checkbox" role="switch"
                     id="flexSwitchCheckDefault4">
                 <label class="form-check-label" for="flexSwitchCheckDefault4">Total Char counter</label>
             </div>
+
             <button type="submit" class="btn btn-dark mt-2">Analyze Text</button>
+
         </form>
     </div>
 

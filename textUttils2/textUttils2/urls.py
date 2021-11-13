@@ -28,12 +28,5 @@ urlpatterns = [
    
     path('navbar',views.navbar,name='navbar')
 
-
-
-    # path('capitalizefirst',views.capfirst,name='capfirst'),
-    # path('newlineremove',views.newlineremove,name='newlineremove'),
-    # path('spaceremove',views.spaceremove,name='spaceremove'),
-    # path('charcount',views.charcount,name='charcount'),
-    
     
 ]
