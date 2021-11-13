@@ -30,7 +30,6 @@ def analyze(request):
     analyzed=''
     if removepunc =='on':
 
-        
         punctuations='''!(){}[]-;:'"\,<>./?@#$%^&*_~'''
         for char in djText:
             if char not in punctuations:
