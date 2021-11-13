@@ -18,7 +18,6 @@ def contact(request):
 
 def analyze(request):
 
-    print(request.GET.get('text','This is Default Value')) # it help to get data from formTag get request
     djText=request.POST.get('text','This is Default Value')
     removepunc=request.POST.get('removepunc','off')
     fullCaps=request.POST.get('fullCaps','off')
@@ -26,39 +25,52 @@ def analyze(request):
     spaceRemover=request.POST.get('spaceRemover','off')
     CharCount=request.POST.get('CharCount','off')
 
-    analyzed=''
+    params={'purpose':'Error','analyzed_text':'!!No Option Selected'}
+    
     if removepunc =='on':
-
+        analyze=''
         punctuations='''!(){}[]-;:'"\,<>./?@#$%^&*_~'''
         for char in djText:
             if char not in punctuations:
-                analyzed=analyzed+char
-        params={'purpose':'Remove Punctuation','analyzed_text':analyzed}
-        return render(request,'analyze.html',params)  #here send analyze.html template as a responce
-    elif fullCaps=='on':
-        analyzed=djText.upper()
-        params={'purpose':'Full Capitalize','analyzed_text':analyzed}
-        return render(request,'analyze.html',params)  #here send analyze.html template as a responce
-    elif newLineRemover=='on':
+                analyze=analyze+char
+        djText=analyze
+        # params={'purpose':'Remove Punctuation','analyzed_text':analyzed}
+        # return render(request,'analyze.html',params)  #here send analyze.html template as a responce
+    if fullCaps=='on':
+        analyze=''
+        for char in djText:
+            analyze=analyze+char.upper()
+        djText=analyze
+        # params={'purpose':'Full Capitalize','analyzed_text':analyzed}
+        # return render(request,'analyze.html',params)  #here send analyze.html template as a responce
+    if newLineRemover=='on':
+        analyze=''
         for char in djText:
             if char not in "\n" and  char not in "\r":    #'\n' and '\r' used to identify nextLine character(generate pressing Enter key)
-                analyzed=analyzed+char
-        params={'purpose':'Remove New Lines','analyzed_text':analyzed}
-        return render(request,'analyze.html',params)  #here send analyze.html template as a responce
-    elif spaceRemover=='on':
+                analyze=analyze+char
+        djText=analyze
+        # params={'purpose':'Remove New Lines','analyzed_text':analyzed}
+        # return render(request,'analyze.html',params)  #here send analyze.html template as a responce
+    if spaceRemover=='on':
+        analyze=''
         for index,char in enumerate(djText):   #enumerate() method return index value as well as string
             if not(djText[index]  in ' ' and djText[index+1]  in ' '):
-                analyzed=analyzed+char
-        params={'purpose':'Remove New Lines','analyzed_text':analyzed}
-        return render(request,'analyze.html',params)  #here send analyze.html template as a responce
-    elif CharCount=='on':
+                analyze=analyze+char
+        djText=analyze
+        # params={'purpose':'Remove New Lines','analyzed_text':analyzed}
+        # return render(request,'analyze.html',params)  #here send analyze.html template as a responce
+    if CharCount=='on':
         length=len(djText)
-        length="Your input String's Length is:{}".format(length)
-        params={'purpose':'Remove New Line', 'analyzed_text':length}
-        return render(request,'analyze.html',params)  #here send analyze.html template as a responce
-
-    else:
-        return HttpResponse("Error")
+        length="\nYour input String's Length is:{}".format(length)
+        djText=djText+length
+        # params={'purpose':'Remove New Line', 'analyzed_text':length}
+        # return render(request,'analyze.html',params)  #here send analyze.html template as a responce
+    if(removepunc!= 'on' and fullCaps!= 'on' and newLineRemover!= 'on' and spaceRemover!= 'on' and CharCount!= 'on'):
+        return(HttpResponse("Error"))
+        
+    params={'purpose':'Multiple Operation','analyzed_text':djText}
+    return render(request,'analyze.html',params)  #here send analyze.html template as a responce
+    
 
 def navbar(request):   #This create for practice purpose not for Textutils
     return HttpResponse('''
