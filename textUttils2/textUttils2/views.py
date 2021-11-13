@@ -19,13 +19,12 @@ def contact(request):
 def analyze(request):
 
     print(request.GET.get('text','This is Default Value')) # it help to get data from formTag get request
-    djText=request.GET.get('text','This is Default Value')
-    removepunc=request.GET.get('removepunc','off')
-    fullCaps=request.GET.get('fullCaps','off')
-    newLineRemover=request.GET.get('newLineRemover','off')
-    spaceRemover=request.GET.get('spaceRemover','off')
-    CharCount=request.GET.get('CharCount','off')
-    
+    djText=request.POST.get('text','This is Default Value')
+    removepunc=request.POST.get('removepunc','off')
+    fullCaps=request.POST.get('fullCaps','off')
+    newLineRemover=request.POST.get('newLineRemover','off')
+    spaceRemover=request.POST.get('spaceRemover','off')
+    CharCount=request.POST.get('CharCount','off')
 
     analyzed=''
     if removepunc =='on':
@@ -42,7 +41,7 @@ def analyze(request):
         return render(request,'analyze.html',params)  #here send analyze.html template as a responce
     elif newLineRemover=='on':
         for char in djText:
-            if char not in '/n':
+            if char not in "\n" and  char not in "\r":    #'\n' and '\r' used to identify nextLine character(generate pressing Enter key)
                 analyzed=analyzed+char
         params={'purpose':'Remove New Lines','analyzed_text':analyzed}
         return render(request,'analyze.html',params)  #here send analyze.html template as a responce
