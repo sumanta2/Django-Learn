@@ -1,0 +1,1 @@
+web: gunicorn textUttils2.wsgi
