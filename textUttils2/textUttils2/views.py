@@ -22,6 +22,9 @@ def analyze(request):
     CharCount=request.POST.get('CharCount','off')
 
     params={'purpose':'Error','analyzed_text':'!!No Option Selected'}
+
+    if djText=='':
+        return(HttpResponse("Please Enter Data In InputBox"))
     
     if removepunc =='on':
         analyze=''
@@ -57,7 +60,7 @@ def analyze(request):
         djText=djText+length
 
     if(removepunc!= 'on' and fullCaps!= 'on' and newLineRemover!= 'on' and spaceRemover!= 'on' and CharCount!= 'on'):
-        return(HttpResponse("Error"))
+        return(HttpResponse("No operation Selected"))
         
     params={'purpose':'Multiple Operation','analyzed_text':djText}
     return render(request,'analyze.html',params)  #here send analyze.html template as a responce
